@@ -13,6 +13,10 @@
   <!-- Plotly.js -->
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
+  <!-- scripts -->
+  <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script>
+
   <meta name="theme-color" content="#fafafa">
 </head>
 
@@ -20,10 +24,19 @@
   <p>Example plot!!!</p>
 
   <div id="tester" style="width:90%;height:250px;"></div>
-  <script src="js/plugins.js"></script>
-  <script src="js/main.js"></script>
 
-  <script> Plotter() </script>
+  <form>
+    Param1:<br>
+    <input type="text" id="param1"><br>
+    Param2:<br>
+    <input type="text" id="param2">
+  </form>
+
+  <button id="save_button">Save params</button>
+
+  <script> addListeners() </script>
+
+  <script> plotter() </script>
 
 </body>
 
