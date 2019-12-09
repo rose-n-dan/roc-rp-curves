@@ -1,43 +1,112 @@
 <!doctype html>
-<html class="no-js" lang="">
+    <html class="no-js" lang="">
 
-<head>
-  <meta charset="utf-8">
-  <title></title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/custom.css">
 
-  <!-- Plotly.js -->
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <!-- Plotly.js -->
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
-  <!-- scripts -->
-  <script src="js/plugins.js"></script>
-  <script src="js/main.js"></script>
+        <!-- scripts -->
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
 
-  <meta name="theme-color" content="#fafafa">
-</head>
+        <meta name="theme-color" content="#fafafa">
 
-<body>
-  <p>Example plot!!!</p>
+    </head>
 
-  <div id="tester" style="width:90%;height:250px;"></div>
+    <body>
 
-  <form>
-    Param1:<br>
-    <input type="text" id="param1"><br>
-    Param2:<br>
-    <input type="text" id="param2">
-  </form>
+    <table style="border:2px solid black" id="data_table">
+        <thead>
+            <tr>
+                <th>Wartość prawdziwa</th>
+                <th>Wynik testu</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>0.8</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>0.3</td>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td>0.66</td>
+            </tr>
+        </tbody>
+    </table>
 
-  <button id="save_button">Save params</button>
+    <form>
+        Wartość prawdziwa:
+        <br>
+            <label for="value"></label><input type="text" id="value">
+        <br>
 
-  <script> addListeners() </script>
+        Wynik testu:
+        <br>
+            <label for="test_result"></label><input type="text" id="test_result">
+        <br>
+    </form>
 
-  <script> plotter() </script>
+    <button id="add_row">Add a row</button>
+    <br>
+    <br>
 
-</body>
+    <table style="border:2px solid black" id="thresholds_table">
+        <thead>
+        <tr>
+            <th>Wartość progu</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>0.85</td>
+        </tr>
+        <tr>
+            <td>0.7</td>
+        </tr>
+        <tr>
+            <td>0.5</td>
+        </tr>
+        <tr>
+            <td>0.35</td>
+        </tr>
+        <tr>
+            <td>0.2</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <form>
+        Nowa wartość progu:
+        <br>
+        <label for="value"></label><input type="text" id="threshold">
+        <br>
+    </form>
+
+    <button id="add_threshold">Add new threshold</button>
+    <br>
+    <br>
+
+    <br>
+    <button id="plot">Plot!</button>
+    <br>
+
+    <div id="tester" style="width:90%;height:250px;"></div>
+
+    <script> addListeners() </script>
+
+    </body>
 
 </html>
