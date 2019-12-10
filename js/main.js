@@ -131,19 +131,23 @@ function plotter() {
 
 function addRow() {
   console.log("Adding a row.");
-  let table = document.getElementById('data_table');
-  let len = table.rows.length;
-  let new_row = table.insertRow(len);
-  let value_cell = new_row.insertCell(0);
-  let test_result_cell = new_row.insertCell(1);
-  value_cell.innerHTML = document.getElementById("value").value;
-  test_result_cell.innerHTML = document.getElementById("test_result").value;
+  let value = document.getElementById("value").value;
+  let test_result = document.getElementById("test_result").value;
+  if(validateResult(value, test_result) === true) {
+    let table = document.getElementById('data_table');
+    let len = table.rows.length;
+    let new_row = table.insertRow(len);
+    let value_cell = new_row.insertCell(0);
+    let test_result_cell = new_row.insertCell(1);
+    value_cell.innerHTML = document.getElementById("value").value;
+    test_result_cell.innerHTML = document.getElementById("test_result").value;
+  }
   document.getElementById("resultForm").reset();
 }
 
 function addThreshold() {
   let threshold = document.getElementById('threshold').value;
-  if(validateThreshold(threshold) == true) {
+  if(validateThreshold(threshold) === true) {
     console.log("Adding new threshold.");
     let table = document.getElementById('thresholds_table');
     let len = table.rows.length;
@@ -154,22 +158,25 @@ function addThreshold() {
   document.getElementById("thresholdForm").reset();
 }
 
-function validateThreshold(input) {
-  let threshold = input;
-  let thresholdREGEX = /^0[.][0-9]+$|^1$|^0$/;
-  let thresholdResult = thresholdREGEX.test(threshold);
-  if(thresholdResult == false) {
-    alert('Please enter a valid threshold');
+function validateResult(pvalue, ptest_value) {
+  let value = pvalue;
+  let test_prob = ptest_value;
+  let valueREGEX = /^1|0$/;
+  let test_probREGEX = /^0[.][0-9]+$|^1$|^0$/;
+  let valueResult = valueREGEX.test(value);
+  let test_probResult = test_probREGEX.test(test_prob);
+  if(valueResult === false || test_probResult === false) {
+    alert('Please enter valid state and probability');
     return false;
   }
   return true;
 }
 
-function validateResult(input) {
-  let threshold = input;
+function validateThreshold(pthreshold) {
+  let threshold = pthreshold;
   let thresholdREGEX = /^0[.][0-9]+$|^1$|^0$/;
   let thresholdResult = thresholdREGEX.test(threshold);
-  if(thresholdResult == false) {
+  if(thresholdResult === false) {
     alert('Please enter a valid test result');
     return false;
   }
