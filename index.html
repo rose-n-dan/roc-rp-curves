@@ -17,6 +17,8 @@
         <!-- scripts -->
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
+        <script src="js/DataProcessor.js"></script>
+
 
         <meta name="theme-color" content="#fafafa">
 
@@ -33,6 +35,22 @@
         </thead>
         <tbody>
             <tr>
+                <td>0</td>
+                <td>0.5</td>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td>0.3</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>0.56</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>0.67</td>
+            </tr>
+            <tr>
                 <td>1</td>
                 <td>0.8</td>
             </tr>
@@ -44,10 +62,14 @@
                 <td>0</td>
                 <td>0.66</td>
             </tr>
+            <tr>
+                <td>0</td>
+                <td>0.9</td>
+            </tr>
         </tbody>
     </table>
 
-    <form>
+    <form id="resultForm">
         Wartość prawdziwa:
         <br>
             <label for="value"></label><input type="text" id="value">
@@ -74,10 +96,19 @@
             <td>0.85</td>
         </tr>
         <tr>
+            <td>0.8</td>
+        </tr>
+        <tr>
             <td>0.7</td>
         </tr>
         <tr>
+            <td>0.55</td>
+        </tr>
+        <tr>
             <td>0.5</td>
+        </tr>
+        <tr>
+            <td>0.4</td>
         </tr>
         <tr>
             <td>0.35</td>
@@ -88,7 +119,7 @@
         </tbody>
     </table>
 
-    <form>
+    <form id="thresholdForm">
         Nowa wartość progu:
         <br>
         <label for="value"></label><input type="text" id="threshold">
@@ -99,11 +130,36 @@
     <br>
     <br>
 
+    <table style="border:2px solid black" align="center" id="error_matrix">
+        <thead>
+        <tr>
+            <th>Próg</th>
+            <th>True Positives</th>
+            <th>False Positives</th>
+            <th>True Negatives</th>
+            <th>False Negatives</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+
+        </tr>
+        <tr>
+
+        </tr>
+        <tr>
+
+        </tr>
+        </tbody>
+    </table>
+
     <br>
     <button id="plot">Plot!</button>
     <br>
 
-    <div id="tester" style="width:90%;height:250px;"></div>
+    <div id="rocPlot" style="width:100%;height:600px;"></div>
+
+    <div id="rcPlot" style="width:100%;height:600px;"></div>
 
     <script> addListeners() </script>
 
