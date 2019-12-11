@@ -18,8 +18,8 @@ function plotter() {
   console.log("Thresholds: " + thresholds);
 
   // parse data as error matrix rows
-  let processedRows = processRows(values, test_results, thresholds);
-  for (let i = 0; i < processedRows.length; i++) {
+  let MatrixRows = MatrixRowCreator(values, test_results, thresholds);
+  for (let i = 0; i < MatrixRows.length; i++) {
     let matrix = document.getElementById('error_matrix');
     let len = matrix.rows.length;
     let new_row = matrix.insertRow(len);
@@ -28,21 +28,21 @@ function plotter() {
     let FP_cell = new_row.insertCell(2);
     let TN_cell = new_row.insertCell(3);
     let FN_cell = new_row.insertCell(4);
-    threshold_cell.innerHTML = processedRows[i].threshold;
-    TP_cell.innerHTML = processedRows[i].TP;
-    FP_cell.innerHTML = processedRows[i].FP;
-    TN_cell.innerHTML = processedRows[i].TN;
-    FN_cell.innerHTML = processedRows[i].FN;
+    threshold_cell.innerHTML = MatrixRows[i].threshold;
+    TP_cell.innerHTML = MatrixRows[i].TP;
+    FP_cell.innerHTML = MatrixRows[i].FP;
+    TN_cell.innerHTML = MatrixRows[i].TN;
+    FN_cell.innerHTML = MatrixRows[i].FN;
   }
 
   // prepare data for ROC curve
   let TPR = [];
   let FPR = [];
   let PPV = [];
-  for (let i = 0; i < processedRows.length; i++) {
-    TPR.push(parseFloat(processedRows[i].recall));
-    FPR.push(parseFloat(1 - processedRows[i].specifity));
-    PPV.push(parseFloat(processedRows[i].precision));
+  for (let i = 0; i < MatrixRows.length; i++) {
+    TPR.push(parseFloat(MatrixRows[i].recall));
+    FPR.push(parseFloat(1 - MatrixRows[i].specificity));
+    PPV.push(parseFloat(MatrixRows[i].precision));
   }
 
   // draw ROC curve
@@ -64,7 +64,7 @@ function plotter() {
     },
     xaxis: {
       title: {
-        text: 'False Positive Probability',
+        text: 'False Positive Rate',
         font: {
           family: 'Courier New, monospace',
           size: 18,
@@ -74,7 +74,7 @@ function plotter() {
     },
     yaxis: {
       title: {
-        text: 'True Positive Probability',
+        text: 'True Positive Rate',
         font: {
           family: 'Courier New, monospace',
           size: 18,
@@ -108,7 +108,7 @@ function plotter() {
     },
     xaxis: {
       title: {
-        text: 'True Positive Probability',
+        text: 'Recall',
         font: {
           family: 'Courier New, monospace',
           size: 18,
@@ -118,7 +118,7 @@ function plotter() {
     },
     yaxis: {
       title: {
-        text: 'Positive Predictive Probability',
+        text: 'Precision',
         font: {
           family: 'Courier New, monospace',
           size: 18,
