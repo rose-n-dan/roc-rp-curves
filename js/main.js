@@ -43,7 +43,6 @@ function plotter() {
     TPR.push(parseFloat(processedRows[i].recall));
     FPR.push(parseFloat(1 - processedRows[i].specifity));
     PPV.push(parseFloat(processedRows[i].precision));
-
   }
 
   // draw ROC curve
@@ -85,6 +84,9 @@ function plotter() {
     }
   };
 
+  let rocStyle = document.getElementById('rocPlot').style;
+  rocStyle.width = "100%";
+  rocStyle.height = "600px";
   Plotly.newPlot('rocPlot', data_roc, layout_roc, {showSendToCloud: true});
 
   // draw RP curve
@@ -126,36 +128,70 @@ function plotter() {
     }
   };
 
+  document.getElementById('rcPlot').style = rocStyle;
   Plotly.newPlot('rcPlot', data_rp, layout_rp, {showSendToCloud: true});
 }
 
-function addRow() {
-  console.log("Adding a row.");
-  let value = document.getElementById("value").value;
-  let test_result = document.getElementById("test_result").value;
+function addRow(value, test_result) {
+  console.log("Adding a row: " + value + " " + test_result);
   if(validateResult(value, test_result) === true) {
     let table = document.getElementById('data_table');
-    let len = table.rows.length;
-    let new_row = table.insertRow(len);
+    // let len = table.rows.length;
+    let new_row = table.insertRow(table.rows.length);
     let value_cell = new_row.insertCell(0);
     let test_result_cell = new_row.insertCell(1);
-    value_cell.innerHTML = document.getElementById("value").value;
-    test_result_cell.innerHTML = document.getElementById("test_result").value;
+    value_cell.innerHTML = value;
+    test_result_cell.innerHTML = test_result.toFixed(2);
   }
   document.getElementById("resultForm").reset();
 }
 
-function addThreshold() {
-  let threshold = document.getElementById('threshold').value;
-  if(validateThreshold(threshold) === true) {
-    console.log("Adding new threshold.");
+function addRowFromCells() {
+    addRow(document.getElementById("value").value,
+           document.getElementById("test_result").value);
+}
+
+function insertData() {
+    let values = [0, 0, 1, 1, 1, 1, 0, 0];
+    let test_results = [0.5, 0.3, 0.56, 0.67, 0.8, 0.33, 0.66, 0.9];
+
+    let table = document.getElementById('data_table');
+    for (let i = 1; i < table.rows.length;)
+    {
+        table.deleteRow(i);
+    }
+    for (let j = 0; j < values.length; j++)
+    {
+        addRow(values[j], test_results[j]);
+    }
+}
+
+function addThreshold(threshold) {
+    console.log("Adding new threshold: " + threshold);
+    if(validateThreshold(threshold) === true) {
+        let table = document.getElementById('thresholds_table');
+        let len = table.rows.length;
+        let new_row = table.insertRow(len);
+        let threshold_cell = new_row.insertCell(0);
+        threshold_cell.innerHTML = threshold.toFixed(2);
+    }
+    document.getElementById("thresholdForm").reset();
+}
+
+function addThresholdFromCell() {
+    addThreshold(document.getElementById('threshold').value);
+}
+
+function insertThresholds() {
     let table = document.getElementById('thresholds_table');
-    let len = table.rows.length;
-    let new_row = table.insertRow(len);
-    let threshold_cell = new_row.insertCell(0);
-    threshold_cell.innerHTML = document.getElementById("threshold").value;
-  }
-  document.getElementById("thresholdForm").reset();
+    for (let i = 1; i < table.rows.length;)
+    {
+        table.deleteRow(i);
+    }
+    for (let j = 0.05; j < 1; j += 0.1)
+    {
+        addThreshold(j);
+    }
 }
 
 function validateResult(pvalue, ptest_value) {
@@ -184,7 +220,9 @@ function validateThreshold(pthreshold) {
 }
 
 function addListeners() {
-  document.getElementById("add_row").addEventListener("click", addRow, false);
-  document.getElementById("add_threshold").addEventListener("click", addThreshold, false);
+  document.getElementById("add_row").addEventListener("click", addRowFromCells, false);
+  document.getElementById("insert_exemplary_data").addEventListener("click", insertData, false);
+  document.getElementById("add_threshold").addEventListener("click", addThresholdFromCell, false);
+  document.getElementById("insert_exemplary_thresholds").addEventListener("click", insertThresholds, false);
   document.getElementById("plot").addEventListener("click", plotter, false);
 }
