@@ -133,17 +133,19 @@ function plotter() {
 }
 
 function addRow(value, test_result) {
-  console.log("Adding a row: " + value + " " + test_result);
-  if(validateResult(value, test_result) === true) {
-    let table = document.getElementById('data_table');
-    // let len = table.rows.length;
-    let new_row = table.insertRow(table.rows.length);
-    let value_cell = new_row.insertCell(0);
-    let test_result_cell = new_row.insertCell(1);
-    value_cell.innerHTML = value;
-    test_result_cell.innerHTML = test_result.toFixed(2);
-  }
-  document.getElementById("resultForm").reset();
+    value = parseInt(value);
+    test_result = parseFloat(test_result);
+    console.log("Adding a row: " + value + " " + test_result);
+    if(validateResult(value, test_result) === true) {
+        let table = document.getElementById('data_table');
+        // let len = table.rows.length;
+        let new_row = table.insertRow(table.rows.length);
+        let value_cell = new_row.insertCell(0);
+        let test_result_cell = new_row.insertCell(1);
+        value_cell.innerHTML = value;
+        test_result_cell.innerHTML = test_result.toFixed(2);
+    }
+    document.getElementById("resultForm").reset();
 }
 
 function addRowFromCells() {
@@ -167,13 +169,16 @@ function insertData() {
 }
 
 function addThreshold(threshold) {
-    console.log("Adding new threshold: " + threshold);
+    threshold = parseFloat(threshold);
     if(validateThreshold(threshold) === true) {
+        console.log("Adding new threshold: " + threshold);
         let table = document.getElementById('thresholds_table');
         let len = table.rows.length;
         let new_row = table.insertRow(len);
         let threshold_cell = new_row.insertCell(0);
         threshold_cell.innerHTML = threshold.toFixed(2);
+    } else {
+        console.log("Not adding new threshold, '" + threshold + "' is not a float type.");
     }
     document.getElementById("thresholdForm").reset();
 }

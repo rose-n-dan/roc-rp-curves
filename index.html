@@ -7,6 +7,8 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/custom.css">
@@ -25,53 +27,60 @@
 
     <body>
 
-    <table style="border:2px solid black" id="data_table">
-        <tr>
-            <th>Wartość prawdziwa</th>
-            <th>Wynik testu</th>
-        </tr>
-    </table>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <table style="border:2px solid black" id="data_table">
+                    <tr>
+                        <th>Wartość prawdziwa</th>
+                        <th>Wynik testu</th>
+                    </tr>
+                </table>
 
-    <form id="resultForm">
-        Wartość prawdziwa:
-        <br>
-            <label for="value"></label><input type="text" id="value">
-        <br>
+                <form id="resultForm">
+                    Wartość prawdziwa:
+                    <br>
+                    <label for="value"></label><input type="text" id="value">
+                    <br>
 
-        Wynik testu:
-        <br>
-            <label for="test_result"></label><input type="text" id="test_result">
-        <br>
-    </form>
+                    Wynik testu:
+                    <br>
+                    <label for="test_result"></label><input type="text" id="test_result">
+                    <br>
+                </form>
 
-    <button id="add_row">Add a row</button>
-    <br>
-    <br>
+                <button id="add_row">Add a row</button>
+                <br>
+                <br>
 
-    <button id="insert_exemplary_data">Insert exemplary data</button>
-    <br>
-    <br>
+                <button id="insert_exemplary_data">Insert exemplary data</button>
+                <br>
+                <br>
+            </div>
+            <div class="col">
+                <table style="border:2px solid black" id="thresholds_table">
+                    <tr>
+                        <th>Wartość progu</th>
+                    </tr>
+                </table>
 
-    <table style="border:2px solid black" id="thresholds_table">
-        <tr>
-            <th>Wartość progu</th>
-        </tr>
-    </table>
+                <form id="thresholdForm">
+                    Nowa wartość progu:
+                    <br>
+                    <label for="value"></label><input type="text" id="threshold">
+                    <br>
+                </form>
 
-    <form id="thresholdForm">
-        Nowa wartość progu:
-        <br>
-        <label for="value"></label><input type="text" id="threshold">
-        <br>
-    </form>
+                <button id="add_threshold">Add new threshold</button>
+                <br>
+                <br>
 
-    <button id="add_threshold">Add new threshold</button>
-    <br>
-    <br>
-
-    <button id="insert_exemplary_thresholds">Insert exemplary thresholds</button>
-    <br>
-    <br>
+                <button id="insert_exemplary_thresholds">Insert exemplary thresholds</button>
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>
 
     <table style="border:2px solid black" align="center" id="error_matrix">
         <thead>
