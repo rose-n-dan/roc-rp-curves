@@ -1,0 +1,17 @@
+.double_colored_button {
+    color: #ffffff !important;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: #2BE25F;
+    border-radius: 10px;
+    padding: 10px;
+    display: inline-block;
+    transition: all 0.4s ease 0s;
+}
+
+.double_colored_button:hover {
+    color: #ffffff !important;
+    background: #f6b93b;
+    border-radius: 10px;
+    transition: all 0.4s ease 0s;
+}

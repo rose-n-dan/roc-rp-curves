@@ -9,9 +9,12 @@
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+        <!-- CSS -->
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/custom.css">
+        <link rel="stylesheet" href="css/buttons.css">
 
         <!-- Plotly.js -->
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
@@ -49,12 +52,14 @@
                     <br>
                 </form>
 
-                <button id="add_row">Add a row</button>
-                <br>
+                <div class="button_cont">
+                    <a class="double_colored_button" id="add_row">Add a row</a>
+                </div>
                 <br>
 
-                <button id="insert_exemplary_data">Insert exemplary data</button>
-                <br>
+                <div class="button_cont">
+                    <a class="double_colored_button" id="insert_exemplary_data">Insert exemplary data</a>
+                </div>
                 <br>
             </div>
             <div class="col">
@@ -71,12 +76,14 @@
                     <br>
                 </form>
 
-                <button id="add_threshold">Add new threshold</button>
-                <br>
+                <div class="button_cont">
+                    <a class="double_colored_button" id="add_threshold">Add new threshold</a>
+                </div>
                 <br>
 
-                <button id="insert_exemplary_thresholds">Insert exemplary thresholds</button>
-                <br>
+                <div class="button_cont">
+                    <a class="double_colored_button" id="insert_exemplary_thresholds">Insert exemplary thresholds</a>
+                </div>
                 <br>
             </div>
         </div>
@@ -106,7 +113,9 @@
     </table>
 
     <br>
-    <button id="plot">Plot!</button>
+    <div class="button_cont" align="center">
+        <a class="double_colored_button" id="plot">Plot!</a>
+    </div>
     <br>
 
     <div id="rocPlot"></div>
