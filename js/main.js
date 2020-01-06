@@ -1,4 +1,7 @@
 function plotter() {
+  // clear table from previous data
+  clearTable();
+
   // collect values and test results
   let data_table = document.getElementById('data_table');
   let values = [], test_results = [];
@@ -221,6 +224,11 @@ function validateThreshold(pthreshold) {
     return false;
   }
   return true;
+}
+
+function clearTable() {
+    let table = document.getElementById("error_matrix");
+    table.getElementsByTagName("tbody")[0].innerHTML = "<tr></tr>";
 }
 
 function addListeners() {
