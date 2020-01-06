@@ -137,8 +137,7 @@ function addRow(value, test_result) {
     test_result = parseFloat(test_result);
     console.log("Adding a row: " + value + " " + test_result);
     if(validateResult(value, test_result) === true) {
-        let table = document.getElementById('data_table');
-        // let len = table.rows.length;
+        let table = document.getElementById('data_table').getElementsByTagName('tbody')[0];
         let new_row = table.insertRow(table.rows.length);
         let value_cell = new_row.insertCell(0);
         let test_result_cell = new_row.insertCell(1);
@@ -172,7 +171,7 @@ function addThreshold(threshold) {
     threshold = parseFloat(threshold);
     if(validateThreshold(threshold) === true) {
         console.log("Adding new threshold: " + threshold);
-        let table = document.getElementById('thresholds_table');
+        let table = document.getElementById('thresholds_table').getElementsByTagName('tbody')[0];
         let len = table.rows.length;
         let new_row = table.insertRow(len);
         let threshold_cell = new_row.insertCell(0);
