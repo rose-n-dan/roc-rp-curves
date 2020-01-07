@@ -209,10 +209,13 @@ function validateResult(pvalue, ptest_value) {
   let valueResult = valueREGEX.test(value);
   let test_probResult = test_probREGEX.test(test_prob);
   if(valueResult === false || test_probResult === false) {
-    alert('Please enter valid state and probability');
+	document.getElementById("result_validation").innerHTML = "Please enter valid state and probability";
     return false;
   }
+  else {
+  document.getElementById("result_validation").innerHTML = "";
   return true;
+  }
 }
 
 function validateThreshold(pthreshold) {
@@ -220,10 +223,13 @@ function validateThreshold(pthreshold) {
   let thresholdREGEX = /^0[.][0-9]+$|^1$|^0$/;
   let thresholdResult = thresholdREGEX.test(threshold);
   if(thresholdResult === false) {
-    alert('Please enter a valid test result');
+    document.getElementById("threshold_validation").innerHTML = " Please enter a valid threshold";
     return false;
   }
+  else {
+  document.getElementById("threshold_validation").innerHTML = "";
   return true;
+  }
 }
 
 function clearTable() {
