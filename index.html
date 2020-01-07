@@ -36,7 +36,23 @@
             <div class="row">
                 <div class="col">
                     <div class="centering_container">
-                        Tu będzie jakiś opis.
+                        <div class="header">
+                            <p>Wyznaczanie krzywych ROC i RP dla testów binarnych</p>
+                        </div>
+                        <p>
+                            Krzywe ROC i RP wykreślane są na podstawie zbioru par (wartość prawdziwa, wynik testu) oraz
+                            zbioru progów.
+                        </p>
+                        <p>
+                            Wynik testu jest to stan rzeczywisty, który ma zostać określony przez klasyfikator
+                            może przyjmować jedynie dwie wartości całkowite - 0 lub 1. Wartość
+                            testu (wartość prawdziwa) mówi, z jakim granicznym prawdopodobieństwem otrzymamy
+                            wynik pozytywny. Może więc przyjmować wartości rzeczywiste z zakresu <0, 1>.
+                        </p>
+                        <p>
+                            Próg jest granicą jaką stawia model między obiema klasami i zawiera się w
+                            przedziale <0, 1>.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -66,8 +82,11 @@
                             <label for="test_result"></label><input type="text" id="test_result">
                             <br>
                         </form>
-						<p id="result_validation"></p>
-	
+
+                        <div class="error_message">
+                            <p id="result_validation"></p>
+                        </div>
+
                         <div class="button_cont">
                             <a class="double_colored_button" id="add_row">Dodaj nowe dane</a>
                         </div>
@@ -79,7 +98,6 @@
                 </div>
 
                 <div class="col">
-
                     <table id="thresholds_table">
                         <thead>
                             <tr>
@@ -97,7 +115,9 @@
                             <br>
                         </form>
 
-						<p id="threshold_validation"></p>
+                        <div class="error_message">
+                            <p id="threshold_validation"></p>
+                        </div>
 
                         <div class="button_cont">
                             <a class="double_colored_button" id="add_threshold">Dodaj nowy próg</a>
@@ -160,7 +180,11 @@
     <div class="row">
         <div class="col">
             <div class="centering_container">
-                <a href="tests.html">Testy Jednostkowe</a>
+                <div class="button_cont">
+                    <a href="tests.html" class="double_colored_button">
+                        Testy Jednostkowe
+                    </a>
+                </div>
             </div>
         </div>
     </div>

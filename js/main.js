@@ -213,7 +213,8 @@ function validateResult(pvalue, ptest_value) {
 
 function validateResultWithAlert(pvalue, ptest_value) {
   if(!validateResult(pvalue, ptest_value)) {
-	document.getElementById("result_validation").innerHTML = "Please enter valid state and probability";
+	document.getElementById("result_validation").innerHTML =
+        "Podaj poprawną wartość prawdziwą (0-1) oraz wynik testu (0 lub 1)";
     return false;
   }
   else {
@@ -230,7 +231,7 @@ function validateThreshold(pthreshold) {
 
 function validateThresholdWithAlert(pthreshold) {
   if(!validateThreshold(pthreshold)) {
-    document.getElementById("threshold_validation").innerHTML = " Please enter a valid threshold";
+    document.getElementById("threshold_validation").innerHTML = "Podaj poprawną wartość progu (0-1)";
     return false;
   }
   else {

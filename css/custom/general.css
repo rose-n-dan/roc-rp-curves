@@ -2,3 +2,13 @@
     text-align: center;
     margin: 5px 0 5px 0;
 }
+
+.error_message {
+    color: #E2161C !important;
+    font-weight: 600;
+}
+
+.header {
+    font-weight: 900;
+    font-size: xx-large;
+}
