@@ -1,4 +1,7 @@
 function plotter() {
+  // clear table from previous data
+  clearTable();
+
   // collect values and test results
   let data_table = document.getElementById('data_table');
   let values = [], test_results = [];
@@ -136,7 +139,7 @@ function addRow(value, test_result) {
     value = parseInt(value);
     test_result = parseFloat(test_result);
     console.log("Adding a row: " + value + " " + test_result);
-    if(validateResult(value, test_result) === true) {
+    if(validateResultWithAlert(value, test_result)) {
         let table = document.getElementById('data_table').getElementsByTagName('tbody')[0];
         let new_row = table.insertRow(table.rows.length);
         let value_cell = new_row.insertCell(0);
@@ -153,8 +156,8 @@ function addRowFromCells() {
 }
 
 function insertData() {
-    let values = [0, 0, 1, 1, 1, 1, 0, 0];
-    let test_results = [0.5, 0.3, 0.56, 0.67, 0.8, 0.33, 0.66, 0.9];
+    let values = [0, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1];
+    let test_results = [0.41, 0.3, 0.56, 0.67, 0.8, 0.33, 0.66, 0.9, 0.58, 0.42, 0.34];
 
     let table = document.getElementById('data_table');
     for (let i = 1; i < table.rows.length;)
@@ -169,7 +172,7 @@ function insertData() {
 
 function addThreshold(threshold) {
     threshold = parseFloat(threshold);
-    if(validateThreshold(threshold) === true) {
+    if(validateThresholdWithAlert(threshold)) {
         console.log("Adding new threshold: " + threshold);
         let table = document.getElementById('thresholds_table').getElementsByTagName('tbody')[0];
         let len = table.rows.length;
@@ -199,28 +202,46 @@ function insertThresholds() {
 }
 
 function validateResult(pvalue, ptest_value) {
-  let value = pvalue;
-  let test_prob = ptest_value;
-  let valueREGEX = /^1|0$/;
-  let test_probREGEX = /^0[.][0-9]+$|^1$|^0$/;
-  let valueResult = valueREGEX.test(value);
-  let test_probResult = test_probREGEX.test(test_prob);
-  if(valueResult === false || test_probResult === false) {
-    alert('Please enter valid state and probability');
+    let value = pvalue;
+    let test_prob = ptest_value;
+    let valueREGEX = /^1|0$/;
+    let test_probREGEX = /^0[.][0-9]+$|^1$|^0$/;
+    let valueResult = valueREGEX.test(value);
+    let test_probResult = test_probREGEX.test(test_prob);
+    return (valueResult === true && test_probResult === true);
+}
+
+function validateResultWithAlert(pvalue, ptest_value) {
+  if(!validateResult(pvalue, ptest_value)) {
+	document.getElementById("result_validation").innerHTML = "Please enter valid state and probability";
     return false;
   }
-  return true;
+  else {
+    document.getElementById("result_validation").innerHTML = "";
+    return true;
+  }
 }
 
 function validateThreshold(pthreshold) {
-  let threshold = pthreshold;
-  let thresholdREGEX = /^0[.][0-9]+$|^1$|^0$/;
-  let thresholdResult = thresholdREGEX.test(threshold);
-  if(thresholdResult === false) {
-    alert('Please enter a valid test result');
+    let threshold = pthreshold;
+    let thresholdREGEX = /^0[.][0-9]+$|^1$|^0$/;
+    return thresholdREGEX.test(threshold);
+}
+
+function validateThresholdWithAlert(pthreshold) {
+  if(!validateThreshold(pthreshold)) {
+    document.getElementById("threshold_validation").innerHTML = " Please enter a valid threshold";
     return false;
   }
-  return true;
+  else {
+    document.getElementById("threshold_validation").innerHTML = "";
+    return true;
+  }
+}
+
+function clearTable() {
+    let table = document.getElementById("error_matrix");
+    table.getElementsByTagName("tbody")[0].innerHTML = "<tr></tr>";
 }
 
 function addListeners() {
